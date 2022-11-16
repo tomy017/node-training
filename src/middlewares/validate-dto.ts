@@ -1,7 +1,8 @@
+import { RequestHandler, Request, Response, NextFunction } from "express";
 import { ApiError } from "../error/api-error";
 
-function validateDto(schema) {
-  return async (req, res, next) => {
+function validateDto(schema): RequestHandler {
+  return async (req: Request, res: Response, next: NextFunction) => {
     try {
       const validatedBody = await schema.validate(req.body);
       req.body = validatedBody;

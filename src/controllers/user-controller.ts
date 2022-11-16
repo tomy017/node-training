@@ -1,4 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import { Request } from "express";
+import { PrismaClient, User } from "@prisma/client";
 import { HashManager } from "../utils/hash-manager";
 import { TokenManager } from "../utils/token-manager";
 import { ApiError } from "../error/api-error";
@@ -8,7 +9,7 @@ const hashManager = new HashManager();
 const tokenManager = new TokenManager();
 
 class UserController {
-  async signup(req) {
+  async signup(req: Request): Promise<User> {
     const { firstname, lastname, email, password } = req.body;
     const hashedPassword = await hashManager.getHash(password);
     const result = await prisma.user.create({
@@ -22,7 +23,7 @@ class UserController {
     return result;
   }
 
-  async login(req) {
+  async login(req: Request): Promise<string> {
     const { email, password } = req.body;
     const user = await prisma.user.findUnique({
       where: {
@@ -38,6 +39,7 @@ class UserController {
       password,
       user.password
     );
+
     if (comparedResult) {
       const token = tokenManager.getToken(email);
       return token;
@@ -47,4 +49,4 @@ class UserController {
   }
 }
 
-export default UserController;
+export { UserController };

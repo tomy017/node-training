@@ -1,3 +1,5 @@
+import httpStatus from "http-status";
+
 class ApiError extends Error {
   code: number;
   constructor(message: string, code: number) {
@@ -5,8 +7,8 @@ class ApiError extends Error {
     this.code = code;
   }
 
-  static badRequest(message: string) {
-    return new ApiError(message, 400);
+  static badRequest(message: string): ApiError {
+    return new ApiError(message, httpStatus.BAD_REQUEST);
   }
 }
 

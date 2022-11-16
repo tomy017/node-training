@@ -1,6 +1,6 @@
 import express from "express";
 import { apiErrorHandler } from "./error/api-error-handler";
-import router from "./routes/router";
+import { router } from "./routes/router";
 import dotenv from "dotenv";
 
 dotenv.config();
