@@ -9,7 +9,7 @@ import { nextTick } from "process";
 const router = express.Router();
 const controller = new UserController();
 
-router.get(
+router.post(
   "/signup",
   validateDto(signupDTO),
   async (req: Request, res: Response, next: NextFunction) => {
