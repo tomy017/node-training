@@ -4,6 +4,7 @@ import { UserController } from "../controllers/user-controller";
 import { validateDto } from "../middlewares/validate-dto";
 import signupDTO from "../dtos/signup-dto";
 import loginDTO from "../dtos/login-dto";
+import { nextTick } from "process";
 
 const router = express.Router();
 const controller = new UserController();
@@ -11,9 +12,13 @@ const controller = new UserController();
 router.get(
   "/signup",
   validateDto(signupDTO),
-  async (req: Request, res: Response) => {
-    const result = await controller.signup(req);
-    res.json(result);
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const result = await controller.signup(req);
+      res.json(result);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
