@@ -4,6 +4,8 @@ import { HashManager } from "../utils/hash-manager";
 import { PrismaClient } from "@prisma/client";
 import { TokenManager } from "../utils/token-manager";
 import { ApiError } from "../error/api-error";
+import { createLoginResponse } from "../models/login-response-model";
+import { createSignupResponseModel } from "../models/signup-response-model";
 
 const hashManager = new HashManager();
 const prisma = new PrismaClient();
@@ -22,7 +24,8 @@ class UserService {
           password: hashedPassword,
         },
       });
-      return result;
+      const response = createSignupResponseModel(result);
+      return response;
     } catch (error) {
       throw ApiError.badRequest("User already registered");
     }
@@ -47,7 +50,8 @@ class UserService {
 
     if (comparedResult) {
       const token = tokenManager.getToken(email);
-      return token;
+      const response = createLoginResponse(user, token);
+      return response;
     } else {
       throw ApiError.badRequest("Invalid credentials, try again");
     }
