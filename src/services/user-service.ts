@@ -1,5 +1,5 @@
-import { SignupModel } from "../types/signup-model";
-import { LoginModel } from "../types/login-model";
+import { SignupModel } from "../models/signup-model";
+import { LoginModel } from "../models/login-model";
 import { HashManager } from "../utils/hash-manager";
 import { PrismaClient } from "@prisma/client";
 import { TokenManager } from "../utils/token-manager";
