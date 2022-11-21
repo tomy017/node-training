@@ -1,6 +1,6 @@
 import express from "express";
 import { apiErrorHandler } from "./error/api-error-handler";
-import { router } from "./routes/router";
+import { userRouter } from "./routes/user-router";
 import dotenv from "dotenv";
 import cors from 'cors';
 
@@ -11,7 +11,7 @@ const port = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
-app.use(router);
+app.use(userRouter);
 app.use(apiErrorHandler);
 
 app.listen(port, () => {

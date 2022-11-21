@@ -6,10 +6,10 @@ import signupDTO from "../dtos/signup-dto";
 import loginDTO from "../dtos/login-dto";
 import { nextTick } from "process";
 
-const router = express.Router();
+const userRouter = express.Router();
 const controller = new UserController();
 
-router.post(
+userRouter.post(
   "/signup",
   validateDto(signupDTO),
   async (req: Request, res: Response, next: NextFunction) => {
@@ -22,7 +22,7 @@ router.post(
   }
 );
 
-router.post(
+userRouter.post(
   "/login",
   validateDto(loginDTO),
   async (req: Request, res: Response, next: NextFunction) => {
@@ -35,4 +35,4 @@ router.post(
   }
 );
 
-export { router };
+export { userRouter };
