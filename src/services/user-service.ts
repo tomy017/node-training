@@ -1,4 +1,4 @@
-import { SignupModel } from "../models/signup-model";
+import { UserModel } from "../models/user-model";
 import { LoginModel } from "../models/login-model";
 import { HashManager } from "../utils/hash-manager";
 import { PrismaClient } from "@prisma/client";
@@ -12,7 +12,7 @@ const prisma = new PrismaClient();
 const tokenManager = new TokenManager();
 
 class UserService {
-  async signup(body: SignupModel) {
+  async signup(body: UserModel) {
     try {
       const { firstname, lastname, email, password } = body;
       const hashedPassword = await hashManager.getHash(password);

@@ -1,12 +1,8 @@
-import { User } from "@prisma/client";
+import { UserModel } from "../models/user-model";
 
-type SignupResponseModel = {
-  firstname: string;
-  lastname: string;
-  email: string;
-};
+type SignupResponseModel = Pick<UserModel, "firstname" | "lastname" | "email">;
 
-function createSignupResponseModel(data: User) {
+function createSignupResponseModel(data: UserModel) {
   const response: SignupResponseModel = {
     firstname: data.firstname,
     lastname: data.lastname,
