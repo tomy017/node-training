@@ -6,9 +6,9 @@ import { TokenManager } from "../utils/token-manager";
 import { ApiError } from "../error/api-error";
 import { createLoginResponse } from "../models/login-response-model";
 import { createSignupResponseModel } from "../models/signup-response-model";
+import prisma from "../../prisma/client";
 
 const hashManager = new HashManager();
-const prisma = new PrismaClient();
 const tokenManager = new TokenManager();
 
 class UserService {
