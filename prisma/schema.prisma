@@ -26,6 +26,18 @@ model UserProfile {
   firstname String
   lastname  String
   picture   String
+  posts     Post[]
 
   @@map("UsersProfiles")
+}
+
+model Post {
+  id          Int         @id @default(autoincrement())
+  title       String
+  picture     String
+  date        DateTime
+  author      UserProfile @relation(fields: [authorId], references: [id])
+  authorId    Int
+
+  @@map("Posts")
 }
