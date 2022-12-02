@@ -1,7 +1,6 @@
 import { UserModel } from "../models/user-model";
 import { LoginModel } from "../models/login-model";
 import { HashManager } from "../utils/hash-manager";
-import { PrismaClient } from "@prisma/client";
 import { TokenManager } from "../utils/token-manager";
 import { ApiError } from "../error/api-error";
 import { createLoginResponse } from "../models/login-response-model";
