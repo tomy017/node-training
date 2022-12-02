@@ -35,4 +35,9 @@ userRouter.post(
   }
 );
 
+userRouter.get("/users", async (req: Request, res: Response) => {
+  const result = await controller.getUsers(req);
+  res.json(result);
+});
+
 export { userRouter };

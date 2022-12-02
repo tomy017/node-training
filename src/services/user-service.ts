@@ -10,6 +10,7 @@ import { createSignupResponseModel } from "../models/signup-response-model";
 const hashManager = new HashManager();
 const prisma = new PrismaClient();
 const tokenManager = new TokenManager();
+const USERS_PER_PAGE = 20;
 
 class UserService {
   async signup(body: UserModel) {
@@ -55,6 +56,17 @@ class UserService {
     } else {
       throw ApiError.badRequest("Invalid credentials, try again");
     }
+  }
+
+  async getUsers(params: Record<string, any>) {
+    const page = params.page;
+    const usersToSkip = (page - 1) * USERS_PER_PAGE;
+
+    const results = await prisma.userProfile.findMany({
+      skip: usersToSkip,
+      take: USERS_PER_PAGE,
+    });
+    return results;
   }
 }
 
