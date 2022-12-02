@@ -59,8 +59,11 @@ class UserService {
   }
 
   async getUsers(params: Record<string, any>) {
-    const page = params.page;
-    const usersToSkip = (page - 1) * USERS_PER_PAGE;
+    let page = params.page;
+    if (!page || page < 0) {
+      page = 0;
+    }
+    const usersToSkip = page * USERS_PER_PAGE;
 
     const results = await prisma.userProfile.findMany({
       skip: usersToSkip,
