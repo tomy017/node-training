@@ -17,5 +17,15 @@ model User {
   lastname  String
   password  String
 
-  @@map("users")
+  @@map("Users")
+}
+
+model UserProfile {
+  id        Int    @id @default(autoincrement())
+  title     String
+  firstname String
+  lastname  String
+  picture   String
+
+  @@map("UsersProfiles")
 }
