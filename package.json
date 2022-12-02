@@ -7,7 +7,7 @@
     "start": "tsc && node dist/index.js",
     "start:nodemon": "./node_modules/nodemon/bin/nodemon.js",
     "lint": "eslint . --ext .ts",
-    "test": "jest"
+    "test": "tsc && jest"
   },
   "repository": {
     "type": "git",
