@@ -4,7 +4,6 @@ import { UserController } from "../controllers/user-controller";
 import { validateDto } from "../middlewares/validate-dto";
 import signupDTO from "../dtos/signup-dto";
 import loginDTO from "../dtos/login-dto";
-import { nextTick } from "process";
 
 const userRouter = express.Router();
 const controller = new UserController();
