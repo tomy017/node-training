@@ -1,8 +1,9 @@
 import express from "express";
 import { apiErrorHandler } from "./error/api-error-handler";
 import { userRouter } from "./routes/user-router";
+import { postRouter } from "./routes/post-router";
 import dotenv from "dotenv";
-import cors from 'cors';
+import cors from "cors";
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ const port = process.env.PORT;
 app.use(cors());
 app.use(express.json());
 app.use(userRouter);
+app.use(postRouter);
 app.use(apiErrorHandler);
 
 app.listen(port, () => {
